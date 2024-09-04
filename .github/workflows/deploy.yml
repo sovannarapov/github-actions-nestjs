@@ -28,15 +28,15 @@ jobs:
 
       - name: Build and tag Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-example:latest .
+          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/github-actions-nestjs:latest .
 
       - name: Push Docker image
-        run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-example:latest
+        run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/github-actions-nestjs:latest
 
       - name: Update image metadata
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-example:latest
+          images: ${{ secrets.DOCKER_HUB_USERNAME }}/github-actions-nestjs:latest
           tags: |
             type=sha
           labels: |
