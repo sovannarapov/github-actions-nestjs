@@ -1,9 +1,11 @@
 name: Build and Publish Docker image
 
 on:
-  pull_request:
+  push:
     branches:
       - main
+  pull_request:
+    branches:
       - develop
 
 jobs:
@@ -36,8 +38,8 @@ jobs:
           tags: |
             type=sha
           labels: |
-            org.opencontainers.image.title=NestJS Example
-            org.opencontainers.image.description=Example NestJS application
+            org.opencontainers.image.title=Github Actions NestJS
+            org.opencontainers.image.description=Build docker image for nestjs with github-action and docker hub
             org.opencontainers.image.url=https://github.com/${{github.repository}}
             org.opencontainers.image.revision=${{github.sha}}
             org.opencontainers.image.licenses=MIT
