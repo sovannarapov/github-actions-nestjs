@@ -40,10 +40,13 @@ jobs:
       - name: Install dependencies 👨🏻‍💻
         run: yarn
 
-      # - name: Run linter 👀
-      #   run: yarn start lint
+      - name: Run linter 👀
+        run: yarn lint
 
-      - name: Build
+      - name: Run format 🎨
+        run: yarn format
+
+      - name: Build 🔨
         run: yarn build
 
       #- name: Run tests 🧪
