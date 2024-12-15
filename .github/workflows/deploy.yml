@@ -14,8 +14,8 @@ jobs:
     timeout-minutes: 2
     strategy:
       matrix:
-        os: [ ubuntu-latest ]
-        node: [ 16.x ]
+        os: [ubuntu-latest]
+        node: [20.x]
 
     steps:
       - name: Checkout 🛎
