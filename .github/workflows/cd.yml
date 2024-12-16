@@ -8,12 +8,22 @@ on:
     branches:
       - develop
 
+env:
+  IMAGE_NAME: github-actions-nestjs
+  IMAGE_TAG: ${{ github.run_number }}
+
 jobs:
   build-and-push:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 2
+    strategy:
+      matrix:
+        os: [ubuntu-24.04]
+        node: [20.x]
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout 🛎
+        uses: actions/checkout@v4
 
       - name: Login to Dockerhub
         uses: docker/login-action@v3
@@ -26,15 +36,15 @@ jobs:
 
       - name: Build and tag Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/github-actions-nestjs:latest .
+          docker build . -t ${{ secrets.DOCKER_HUB_USERNAME }}/$IMAGE_NAME:v$IMAGE_TAG
 
       - name: Push Docker image
-        run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/github-actions-nestjs:latest
+        run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/$IMAGE_NAME:v$IMAGE_TAG
 
       - name: Update image metadata
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.DOCKER_HUB_USERNAME }}/github-actions-nestjs:latest
+          images: ${{ secrets.DOCKER_HUB_USERNAME }}/$IMAGE_NAME:v$IMAGE_TAG
           tags: |
             type=sha
           labels: |

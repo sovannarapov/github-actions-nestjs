@@ -5,7 +5,7 @@ import { UpdateBookDto } from './dto/update-book.dto';
 @Injectable()
 export class BooksService {
   create(createBookDto: CreateBookDto) {
-    return 'This action adds a new book';
+    return `This action adds a new book. The added book is ${createBookDto}`;
   }
 
   findAll() {
@@ -17,7 +17,7 @@ export class BooksService {
   }
 
   update(id: number, updateBookDto: UpdateBookDto) {
-    return `This action updates a #${id} book`;
+    return `This action updates a #${id} book. The new book is ${updateBookDto}`;
   }
 
   remove(id: number) {
