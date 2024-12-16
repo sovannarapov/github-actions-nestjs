@@ -1,5 +1,4 @@
-import {
-  Controller,
+import { Controller,
   Get,
   Post,
   Body,
